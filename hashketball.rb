@@ -1,3 +1,5 @@
+require 'pry'
+
 def game_hash
   game_hash ={
     :home => {
@@ -121,3 +123,71 @@ def game_hash
     
   }
 end
+
+def num_points_scored(player_name)
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |key, value|
+      if key.to_s == player_name 
+        return value[:points]
+      end
+    end
+  end
+end
+
+def shoe_size(player_name)
+    game_hash.each do |location, team_data|
+    team_data[:players].each do |key, value|
+      if key.to_s == player_name 
+        return value[:shoe]
+      end
+    end
+  end
+end
+
+def team_colors(team_name)
+  game_hash.each do |location, team_data|
+    if team_data[:team_name].to_s == team_name
+      return team_data[:colors]
+    end
+  end
+end
+
+def team_names
+  game_hash.collect do |location, team_data|
+    team_data[:team_name]
+  end
+end
+
+def player_numbers(team_name)
+  player_numbers = []
+  game_hash.each do |location, team_data|
+    if team_data[:team_name] == team_name
+      team_data[:players].collect do |key, value|
+        player_numbers << value[:number]
+      end
+    end
+  end
+  player_numbers
+end
+
+def player_stats(player_name)
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |key, value|
+      if player_name == key.to_s
+        return value
+      end
+    end
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
